@@ -1,0 +1,191 @@
+ /* General Styles */
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+.hidden{
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar Styling */
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+nav .logo h2 {
+    font-size: 24px;
+}
+
+nav .nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+nav .nav-links li {
+    list-style: none;
+}
+
+nav .nav-links li a {
+    color: #fff;
+    font-size: 18px;
+    padding: 8px 16px;
+    transition: 0.3s ease;
+}
+#login-role{
+    position: absolute; 
+    right: 10%;
+    top: 70px;
+    width: 139px;
+    background-color: #333333;
+    padding: 14px;
+    border-radius: 6px;
+}
+
+nav .nav-links li a:hover {
+    background-color: #575757;
+    border-radius: 4px;
+    text-shadow: 0 0 10px #fff;
+}
+
+nav .btn {
+    background-color: #f39c12;
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+nav .hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Home Section */
+
+#home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60vh;
+    padding: 0 20px;
+    background-color: #f4f4f4;
+    background-image: url('../image/library.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#home .home-content {
+    margin: auto;
+    padding: 2%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2f4f4f;
+}
+
+#home .home-text {
+    flex: 1;
+    width: 60%;
+    background-color: rgba(237, 218, 135, 0.7);
+    padding: 20px;
+}
+
+/* About and Contact Sections */
+
+section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+section h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Design */
+
+@media (max-width: 600px) {
+    nav>.nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        background-color: rgba(20, 30, 46, 0.77);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    nav .nav-links li a {
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    nav .nav-links li{
+        margin: auto;
+    }
+
+    nav .hamburger {
+        display: block;
+    }
+
+    nav>.nav-active {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #home {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #home .home-content {
+        flex-direction: column;
+    }
+
+    #home .home-text {
+        padding: 10px;
+        width: 92%;
+    }
+}

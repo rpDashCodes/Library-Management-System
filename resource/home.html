@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+
+    <!-- Navbar Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h2>LibraryMS</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a  class="btn" id="login">Login</a></li>
+                <li><a href="/signUp" class="btn" id="signup">Signup</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+            </div>
+        </nav>
+        <div id="login-role" class="hidden">
+            <div><a href="/login?role=member">Student Login</a></div>
+           <div> <a href="/login?role=admin">Admin Login</a></div>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="home-content">
+            <div class="home-text">
+                <h1>Welcome to the Library Management System</h1>
+                <p>Manage your books, borrow and return with ease.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>This system is designed to help manage libraries efficiently. It allows users to borrow and return books
+            online.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out to us!</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Library Management System. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/home.js"></script>
+</body>
+
+</html>

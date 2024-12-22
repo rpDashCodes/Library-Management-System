@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../public/css/admin.css">
+</head>
+
+<body>
+    <nav id="navigation">
+        <ul id="nav-links">
+            <li class="option" id="dashboard"><a href="/adDashboard">
+                <img src="image/dashboard.svg" alt="">
+                <span>Dashboard</span>
+            </a></li>
+            <li class="option" id="book"><a href="/adBook"><img src="image/book.svg" alt="">
+                <span>Book</span></a></li>
+            <li class="option" id="member"><a href="/adMember"><img src="image/people.svg" alt="">
+                <span>Members</span></a></li>
+            <li class="option" id="setting"><a href="/adSetting"><img src="image/setting.svg" alt="">
+                <span>Setting</span></a></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- contains main page that will load acording input -->
+        <div id="dashboard" >
+            <div id="greet">Welcome, <div id="adName">Rudra!</div></div>
+            <!-- all operation of dashboard -->
+            <div id="operation">
+                <div class="numCard"><div class="number">100</div> <div>Member </div></div>
+                <div class="numCard"><div class="number">1200</div> <div>Books</div> </div>
+                <div class="numCard"><div class="number">120</div><div>Issued Books</div> </div>
+                <div class="numCard"><div class="number">110</div><div>Returned Book</div> </div>
+            </div>
+
+            <!-- content of selected operation will show in this section -->
+            <div id="content"></div>
+            <div class="card">
+                <div class="information">
+                    <div class="name"># Among Us</div>
+                    <div class="authName">Auth: Rudra Prasad Dash</div>
+                    <div class="category">@ Physics</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

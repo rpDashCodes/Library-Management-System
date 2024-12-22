@@ -1,0 +1,137 @@
+/* Global Styles */
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../image/signUP.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(21px);
+}
+
+.form-container {
+    color: white;
+    background-color: rgba(120,120,120,0.3);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    /* backdrop-filter: blur(10px); */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group.gender {
+    display: flex;
+    /* Aligns radio buttons inline */
+    align-items: center;
+}
+
+.form-group.gender label {
+    margin-right: 15px;
+    /* Adds space between the labels */
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #785da3;
+}
+
+label > a{
+    color: #8cfa8c;
+}
+/* Styling for the button */
+
+.button {
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    background-color: #1d72b8;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+/* Lighting effect on hover */
+
+.button:hover {
+    background-color: #0a58a1;
+    /* Darker shade for hover */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3), 0 0 50px #ff9900, 0 0 100px #ff9900;
+    color: #fff;
+}
+/* Optional: Adding a glowing border effect */
+
+.button:focus {
+    border: 2px solid #ff9900;
+    outline: none;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login {
+    margin-top: 15px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        width: 90%;
+    }
+}
