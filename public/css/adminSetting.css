@@ -1,0 +1,242 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+
+    display: flex;
+}
+
+
+/* for navigation bar */
+nav {
+    width: 78px;
+    overflow: hidden;
+    z-index: 5;
+    background-color: #e6c9ab;
+    box-shadow: 2px 1px 7px 0px black;
+    transition: all 0.5s ease-in-out;
+    height: 92.6vh;
+}
+#nav-setting{
+    background-color: #a58beb;
+}
+
+nav:hover {
+    width: 195px;
+}
+.nav-option a{
+    display:flex;
+    width: 100%;
+    height: 100%;
+}
+
+nav img {
+    width: 40px;
+}
+
+nav>ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+nav>ul>li {
+    position: relative;
+    padding: 17px 17px;
+}
+
+nav li:hover {
+    transition: all 0.5s ease-in-out;
+    background-color: rgb(176, 176, 176);
+
+}
+
+nav span {
+    position: absolute;
+    padding: 0px 10px;
+    top: 31px;
+    left: 65px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#setting{
+    display: flex;
+}
+#right-div{
+    width: 100%;
+}
+main {
+    width: 100%;
+}
+
+#greet {
+    background-color: #e6c9ab;
+    font-size: 30px;
+    color: #0607ff;
+    padding: 14px 17px;
+    box-shadow: 2px 2px 4px #280ceb;
+    position: relative;
+    z-index: 10;
+}
+
+#greet div {
+    display: inline;
+}
+#greet #hamburger{
+    
+    display: none;
+    font-size: 35px;
+    color: white;
+    margin-right: 20px;
+}
+#hamburger:hover{
+    cursor: pointer;
+}
+
+/* holds the functional button to do operations */
+#operation {
+    display: flex;
+    flex-wrap: wrap;
+}
+.image img{
+    width: 25px;
+}
+
+.option:hover{
+ cursor: pointer;
+ background-color: #ebeff0;
+}
+.option:active{
+    background-color: #deedbf;
+}
+strong div{
+    display: inline;
+}
+
+
+/* all the clickble cards that have round corner and can be clicked */
+.card {
+    font-size: 20px;
+    padding: 20px 30px;
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 1px 2px 6px 0px #0607ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+.form-container{
+    background-color: #e5eef7;
+    display: none;
+
+}
+#form-title {
+    font-size: 30px;
+    margin: 25px 10px;
+    padding: 5px 12px;
+}
+
+button{
+    background-color: #f2e6fd;
+    padding: 8px;
+    display: inline-block;
+    border-radius: 4px;
+}
+button:hover{
+    background-color: #f6afdc;
+    cursor: pointer;
+    box-shadow: 2px 2px 6px 0px #8b00ff;
+}
+.form-container{
+    color: #0b607a;
+    box-shadow: 1px 2px 6px 0px #5dbdf1;
+}
+input{
+    margin: 10px;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+input:hover{
+    background-color: #f7f7f7;
+    cursor: pointer;
+    box-shadow: 2px 2px 6px 0px black;
+}
+.action-button img{
+    margin-bottom: 10px;
+    width: 20px;
+    margin: 10px;
+}
+
+
+.id {
+
+    color: red;
+}
+#serverMessage{
+    text-align: center;
+    font: 1em sans-serif;
+}
+#successMessage{
+    color: green;
+    font: 1em sans-serif;
+
+}
+#failureMessage{
+    color: red;
+}
+/* for ejs elements */
+.action-button img:hover{
+    cursor: pointer;
+
+}
+
+/* for the responsive design */
+
+@media (max-width: 600px) {
+    nav {
+        max-width: 75px;
+    }
+
+    .card {
+        padding: 5px;
+        font-size: 0.95em;
+    }
+
+    nav>ul>li {
+        position: relative;
+        padding: 17px 13px;
+    }
+}
+@media (max-width: 470px) {
+    #greet #hamburger {
+        display: inline-block;
+    }
+    nav{
+        background-color: #abe6ceeb;
+        position: absolute;
+        width:0px;
+        height: 94.5vh;
+    }
+    #greet {
+        background-color: black;
+        color: white;
+        font-size: 20px;
+        padding: 5px 12px;
+    }
+
+}

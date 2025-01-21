@@ -76,14 +76,17 @@ function extractAdminData(e) {
     }).then(response => {
         if (!response.ok) {
             return response.json().then(data => {
-                throw new Error(data.message || 'Failed to login.');
+                throw new Error(data.message|| 'Failed to login.');
             });
         }
         return response.json();
     }).then(data => {
-        alert(data.message || "signIn successfull");
-        adminLoginForm.reset();
-        window.location.href = data.redirect;
+        errorMessageElement.style.color = 'green';
+        errorMessageElement.textContent = data.message;
+        setTimeout(() => {
+            adminLoginForm.reset();
+            window.location.href = data.redirect;
+        }, 500);
     }).catch(error => {
         errorMessageElement.textContent = error.message;
 

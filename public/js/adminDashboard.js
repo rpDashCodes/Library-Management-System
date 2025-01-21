@@ -1,8 +1,51 @@
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.getElementById('hamburger');
+    const greet = document.getElementById('greet');
     const booksButton = document.getElementById("book");//targets the books div which on click will show all books in the content container
-    booksButton.addEventListener("click",()=>{
-        fetch('/adDashboard/members',{
+    const membersButton = document.getElementById("member");//targets the members div which on click will show all members in the content container
+    const issuedBooksButton = document.getElementById("issuedBooks");//targets the issuedBooks div which on click will show all issued books in the content container
+    const availableBooksButton = document.getElementById("availableBooks");//targets the availableBooks div which on click will show all available books in the content container
+    const pendingRequestsButton = document.getElementById("pendingRequest");//targets the pendingRequests div which on click will show all pending requests in the content container
+
+    hamburger.textContent = "☰";
+    hamburger.addEventListener("click", () => {
+        const navBar = document.getElementById('navigation');
+
+        if (hamburger.textContent == "☰") {
+            hamburger.innerHTML = '<img src="/image/plus.svg" alt="close" style="width: 20px; height: 20px;">';
+            navBar.style.width = "67px";
+        }
+        else {
+            hamburger.textContent = "☰";
+            navBar.style.width = "0px";
+            greet.style.padding = '5px 12px';
+        }
+    });
+    
+    pendingRequestsButton.addEventListener("click", () => {
+        window.location.href = "/admin/adMember";
+    });
+
+
+    booksButton.addEventListener("click", () => {
+        console.log('book clicked');
+
+        fetch('/admin/adDashboard/book', {
             method: 'GET',
-        })
-    })
+        }).then(response => response.text())
+            .then(html => {
+                const contentDiv = document.getElementById('content');
+                contentDiv.innerHTML = html;
+            })
+    });
+
+    membersButton.addEventListener("click", () => {
+        fetch('/admin/adDashboard/member', {
+            method: 'GET',
+        }).then(response => response.text())
+            .then(html => {
+                const contentDiv = document.getElementById('content');
+                contentDiv.innerHTML = html;
+            })
+    });
 });

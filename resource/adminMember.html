@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/adminMembers.css">
+</head>
+
+<body>
+    
+    <main>
+        <!-- contains main page that will load acording input -->
+        <div id="greet"><div id="hamburger"></div><div id="adName">Welcome,!</div>
+        </div>
+        <div id="member">
+
+            <nav id="navigation">
+                <ul id="nav-links">
+                    <li class="nav-option" id="nav-dashboard"><a href="/admin/adDashboard">
+                            <img src="/image/dashboard.svg" alt="">
+                            <span>Dashboard</span>
+                        </a></li>
+                    <li class="nav-option" id="nav-book"><a href="/admin/adBook"><img src="/image/book.svg" alt="">
+                            <span>Book</span></a></li>
+                    <li class="nav-option" id="nav-member"><a href="/admin/adMember"><img src="/image/people.svg"
+                                alt="">
+                            <span>Members</span></a></li>
+                    <li class="nav-option" id="nav-setting"><a href="/admin/adSetting"><img src="/image/setting.svg"
+                                alt="">
+                            <span>Setting</span></a></li>
+                </ul>
+            </nav>
+            <!-- all operation of member page -->
+            <div id="right-div">
+                <div id="operation">
+                    <div id="pendingButton" class="option card ">
+                        <div class="image"><img src="/image/user-Pending.svg" alt=""></div>
+                        <div>Pending Request</div>
+                    </div>
+                    <div id="blockButton" class="option card">
+                        <div class="image"><img src="/image/user-block.svg" alt=""></div>
+                        <div>Block/Unblock User</div>
+                    </div>
+                    <div id="deleteButton" class="option card">
+                        <div class="image"><img src="/image/user-delete.svg" alt=""></div>
+                        <div>Delete User</div>
+                    </div>
+    
+                </div>
+                <div id="blockUserForm-container" class="form-container card">
+                    <div class="form-title">Restrict a User</div>
+                    <form id="blockUserForm">
+                        <input type="text"  name="rollNo" id="rollNo" placeholder="Enter Roll-No" required>
+                        <button class="block" type="submit">Block</button>
+                    </form>
+                </div>
+                <div id="unblockUserForm-container" class="form-container card">
+                    <div class="form-title">Unrestrict a User</div>
+                    <form id="unblockUserForm">
+                        <input type="text"  name="rollNo" id="rollNo" placeholder="Enter Roll-No" required>
+                        <button class="block" id="unblock" type="submit">Unblock</button>
+                    </form>
+                </div>
+                <div id="deleteUserForm-container" class="form-container card">
+                    <div class="form-title">Delete a User</div>
+                    <form id="deleteUserForm">
+                        <input type="text"  name="rollNo" id="rollNo" placeholder="Enter Roll-No" required>
+                        <button id="delete" type="submit">Delete</button>
+                    </form>
+                </div>
+    
+                <!-- content of selected operation will show in this section -->
+                <div id="serverMessage">
+                    <div id="successMessage"></div>
+                    <div id="failureMessage"></div>
+                </div>
+                <div id="content">
+              
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/js/adminMember.js"></script>
+</body>
+
+</html>

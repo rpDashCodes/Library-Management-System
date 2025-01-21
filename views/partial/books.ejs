@@ -1,0 +1,24 @@
+<% books.forEach(function(book){ %>
+    <div class="card-container">
+        <div class="card">
+            <div class="information">
+                <strong class="name"># <div>
+                        <%=book.name%>
+                    </div>
+                </strong>
+                <strong class="authName">By: <div>
+                        <%=book.author%>
+                    </div>
+                </strong>
+                <strong class="category">@ <div>
+                        <%=book.category%>
+                    </div>
+                </strong>
+            </div>
+            <strong class="available-books">
+                <div><%=book.availableCopies%></div>Pcs
+            </strong>
+            <div class="delete" role="button"><img src="/image/delete.svg" alt=""></div>
+        </div>
+    </div>
+    <% });%>

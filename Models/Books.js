@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const booksSchema = new mongoose.Schema({
-    bookId:{type:Number,required:true,unique:true},
+    bookId:{type:String,required:true,unique:true},
     totalCopies:{type:Number,required:true},
     availableCopies:{type:Number,required:true},
     name:{type:String,required:true,unique:true},
@@ -16,7 +16,7 @@ const issuedBooksSchema = new mongoose.Schema({
     isReturned:Boolean,
     returnDate:Date,
     memberId:String,
-    issueId:Number
+    issueId:{type:Number,required:true,unique:true}
 },{collection:"issuedBooks"});
 
 const Books = mongoose.model('Books',booksSchema);

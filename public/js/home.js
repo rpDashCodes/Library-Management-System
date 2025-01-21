@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }
         else {
             hamburger.textContent = "☰";
+            if(!document.getElementById('login-role').classList.contains('hidden')){
+                document.getElementById('login-role').classList.toggle('hidden');
+            }
         }
         navLinks.classList.toggle('nav-active');
     })

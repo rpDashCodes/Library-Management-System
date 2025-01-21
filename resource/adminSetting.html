@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/adminSetting.css">
+</head>
+
+<body>
+    
+    <main>
+        <!-- contains main page that will load acording input -->
+        <div id="greet"><div id="hamburger"></div><div id="adName">Welcome, !</div>
+        </div>
+        <div id="setting">
+            <nav id="navigation">
+                <ul id="nav-links">
+                    <li class="nav-option" id="nav-dashboard"><a href="/admin/adDashboard">
+                            <img src="/image/dashboard.svg" alt="">
+                            <span>Dashboard</span>
+                        </a></li>
+                    <li class="nav-option" id="nav-book"><a href="/admin/adBook"><img src="/image/book.svg" alt="">
+                            <span>Book</span></a></li>
+                    <li class="nav-option" id="nav-member"><a href="/admin/adMember"><img src="/image/people.svg"
+                                alt="">
+                            <span>Members</span></a></li>
+                    <li class="nav-option" id="nav-setting"><a href="/admin/adSetting"><img src="/image/setting.svg"
+                                alt="">
+                            <span>Setting</span></a></li>
+                </ul>
+            </nav>
+         
+            <!-- all operation of dashboard -->
+            <div id="right-div">
+                <div id="operation">
+                    <div id="change-Name-Button" class="option card ">
+                        <div class="image"><img src="/image/edit.svg" alt=""></div>
+                        <div>Change Name</div>
+                    </div>
+                    <div id="change-Password-Button" class="option card">
+                        <div class="image"><img src="/image/password-change.svg" alt=""></div>
+                        <div>Change Password</div>
+                    </div>
+                    <div id="logOut-Button" class="option card">
+                        <div class="image"><img src="/image/logout.svg" alt=""></div>
+                        <div>Log Out</div>
+                    </div>
+    
+                </div>
+                <div id="changeNameForm-container" class="form-container card">
+                    <div class="form-title">Change Name</div>
+                    <form id="changeNameForm" action="adSetting/changeName" >
+                        <input type="text"  name="firstName" id="firstName" placeholder="Enter First Name" required>
+                        <input type="text"  name="lastName" id="lastName" placeholder="Enter last Name" required>
+                        <button  type="submit">Change</button>
+                    </form>
+                </div>
+                <div id="changePasswordForm-container" class="form-container card">
+                    <div class="form-title">Change Password</div>
+                    <form id="changePasswordForm" action="adSetting/changePassword" >
+                        <input type="text"  name="oldPassword" id="oldPassword" placeholder="Enter Current Password" required>
+                        <input type="text"  name="newPassword" id="newPassword" placeholder="Enter New Password" required>
+                        <button type="submit">Change</button>
+                    </form>
+                </div>
+    
+                <!-- content of selected operation will show in this section -->
+                <div id="serverMessage">
+                    <div id="successMessage"></div>
+                    <div id="failureMessage"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/js/adminSettings.js"></script>
+</body>
+
+</html>

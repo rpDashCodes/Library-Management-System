@@ -1,0 +1,12 @@
+<% members.forEach((member)=>{%>
+<div class="card-container">
+    <div class="card">
+        <div class="information">
+            <strong class="id">Roll No: <div><%=member.rollNo%></div></strong>
+            <strong class="name">NAME: <div><%=`${member.firstName} ${member.lastName}`%></div></strong>
+            <strong class="gender">Gender:<div><%=(member.gender == "M")?"Male":"Female"%></div></strong>
+        </div>
+        <div class="delete" role="button"><img src="/image/delete.svg" alt=""></div>
+    </div>
+   </div>
+<%});%>

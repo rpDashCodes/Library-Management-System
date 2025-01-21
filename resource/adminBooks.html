@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/adminBooks.css">
+</head>
+
+<body>
+    
+    <main>
+        <div id="greet"><div id="hamburger"></div><div id="adName">Welcome, !</div></div> 
+        <!-- contains main page that will load acording input -->
+        <div id="book">
+            <nav id="navigation">
+                <ul id="nav-links">
+                    <li class="nav-option" id="nav-dashboard"><a href="/admin/adDashboard">
+                            <img src="/image/dashboard.svg" alt="">
+                            <span>Dashboard</span>
+                        </a></li>
+                    <li class="nav-option" id="nav-book"><a href="/admin/adBook"><img src="/image/book.svg" alt="">
+                            <span>Book</span></a></li>
+                    <li class="nav-option" id="nav-member"><a href="/admin/adMember"><img src="/image/people.svg" alt="">
+                            <span>Members</span></a></li>
+                    <li class="nav-option" id="nav-setting"><a href="/admin/adSetting"><img src="/image/setting.svg" alt="">
+                            <span>Setting</span></a></li>
+                </ul>
+            </nav>
+            <!-- all operation of dashboard -->
+           <div id="right-div">
+            <div id="operation">
+                <div id="addBookButton" class="option card ">
+                   <div class="image"><img src="/image/plus-circle.svg" alt=""></div>
+                   <div>Add Book</div>
+                </div>
+                   <div id="updateBookButton" class="option card">
+                       <div class="image"><img src="/image/edit.svg" alt=""></div>
+                       <div>Update Book</div>
+                   </div>
+                <div id="deleteBookButton" class="option card">
+                   <div class="image"><img src="/image/minus-circle.svg" alt=""></div>
+                   <div>Remove Book</div>
+                </div>
+                <div id="collectBookButton" class="option card">
+                   <div class="image"><img src="/image/return.svg" alt=""></div>
+                   <div>Collect Book</div>
+                </div>
+              
+           </div>
+
+           <!-- content of selected operation will show in this section -->
+           <div id="content">
+               <div>
+                   <div id="addBookForm-container" class="form-container card">
+                       <div id="form-title">Add Book</div>
+                       <form  id="addBookForm">
+                           <input type="text" name="name" id="name" placeholder="Book Name" required>
+                           <input type="text" name="author" id="author" placeholder="Author">
+                           <input type="text" name="category" id="category" placeholder="category" required>
+                           <input type="number" name="totalCopies" id="totalCopies" placeholder="quantity" required>
+                           <input type="submit" value="Add Book">
+                       </form>
+                   </div>
+                   <div id="updateBookForm-container" class="form-container card">
+                       <div id="form-title">Update Book</div>
+                       <form  id="updateBookForm">
+                           <input type="text" name="bookName" id="bookName" placeholder="Book Name" required>
+                           <input type="number" name="addQuantity" id="quantity" placeholder="Add extra copies" default="0">
+                           <input type="number" name="removeQuantity" id="quantity" placeholder="Remove copies" default="0">
+                           <input type="submit" value="Update Book">
+                       </form>
+                   </div>
+                   <div id="deleteBookForm-container" class="form-container card">
+                       <div id="form-title">Remove Book</div>
+                       <form  id="deleteBookForm">
+                           <input type="text" name="bookName" id="bookName" placeholder="Book Name" required>
+                           <input type="submit" value="Remove">
+                       </form>
+                   </div> 
+                   <div id="collectBookForm-container" class="form-container card">
+                       <div id="form-title">Collect a Book</div>
+                       <form  id="collectBookForm">
+                           <input type="number" name="issueId" id="issueId" placeholder="Issue-Id">
+                           <input type="submit" value="collect">
+                       </form>
+                   </div> 
+                   <div id="serverMessage">
+                       <div id="successMessage"></div>
+                       <div id="failureMessage"></div>
+                   </div>
+              
+               </div>
+           </div>
+               
+            </div>
+        </div>
+    </main>
+    <script src="/js/adminBooks.js"></script>
+</body>
+
+</html>

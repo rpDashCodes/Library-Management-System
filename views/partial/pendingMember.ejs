@@ -1,0 +1,17 @@
+<%pendingMembers.forEach((member)=>{%>
+<div class="card-container">
+    <div class="member-card">
+        <div class="information">
+            <strong class="id">Roll No: <div><%=member.rollNo%></div></strong>
+            <strong class="name">NAME:<div><%=`${member.firstName} ${member.lastName}`%></div></strong>
+            <strong class="gender">e-Mail:<div><%=member.email%></div></strong>
+            <strong class="gender">DOB:<div><%=member.dateOfBirth%></div></strong>
+            <strong class="gender">Gender:<div><%=(member.gender == "M")?"Male":"Female"%></div></strong>
+        </div>
+        <div>
+            <div class="action-button" role="button"><img src="/image/approve.svg" id="<%=member.rollNo%>" class="approve-button"></div>
+            <div class="action-button" role="button"><img src="/image/delete.svg" id="<%=member.rollNo%>" class="reject-button"></div>
+        </div>
+    </div>
+</div>
+<%});%>
