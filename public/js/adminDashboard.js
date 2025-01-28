@@ -28,8 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     booksButton.addEventListener("click", () => {
-        console.log('book clicked');
-
         fetch('/admin/adDashboard/book', {
             method: 'GET',
         }).then(response => response.text())

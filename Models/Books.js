@@ -10,13 +10,14 @@ const booksSchema = new mongoose.Schema({
 },{collection:"books"});
 
 const issuedBooksSchema = new mongoose.Schema({
-    bookId:{type:Number,required:true},
-    issueDate:{type:Date,required:true},
-    returnBy:{type:Date,required:true},
+    bookId:{type:String,required:true},
+    issueId:{type:String,required:true,unique:true},
+    issueDate:{type:String,required:true},
+    returnBy:{type:String,required:true},
     isReturned:Boolean,
-    returnDate:Date,
+    returnDate:String,
     memberId:String,
-    issueId:{type:Number,required:true,unique:true}
+    isApproved:Boolean
 },{collection:"issuedBooks"});
 
 const Books = mongoose.model('Books',booksSchema);

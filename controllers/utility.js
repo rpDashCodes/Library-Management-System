@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { __dirName } from '../update.js';
+import { __dirName } from '../server.js';
 import User from "../Models/User.js";
 
 
@@ -48,8 +48,6 @@ async function createUser(req, res) {
 
     const user = new User({ rollNo: rollNo, password: password, firstName: firstName, lastName: lastName, dateOfBirth: new Date(dateOfBirth), email: email, gender: gender });
     try {
-        console.log('insert requsted');
-
         await user.save();
         res.status(201).json({ message: 'User registered successfully!' });
     } catch (error) {

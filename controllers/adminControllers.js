@@ -6,7 +6,7 @@ import Counter from "../Models/Counter.js";
 import { nameRefactor } from "./utility.js";
 import path from 'path';
 
-import { __dirName } from "../update.js";
+import { __dirName } from "../server.js";
 
 
 async function getAdminDashboard(req, res) {
@@ -100,7 +100,6 @@ async function addBook(req, res) {
         let { totalCopies, author, name, category } = req.body;
         name = name.toUpperCase();
         const book = new Books({ bookId: bookId, name: name, author: author, totalCopies: totalCopies, availableCopies: totalCopies, category: category });
-        console.log(book);
         await book.save();
         res.status(201).json({ message: `${book.name} book added successfully!` });
 
@@ -112,8 +111,6 @@ async function addBook(req, res) {
 async function updateBook(req, res) {
     try {
         let { bookName, addQuantity, removeQuantity } = req.body;
-        console.log('bookName', bookName);
-        
         bookName = bookName.toUpperCase();
         bookName = bookName.trim();
         addQuantity = parseInt(addQuantity);

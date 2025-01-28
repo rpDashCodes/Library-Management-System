@@ -1,0 +1,24 @@
+<% books.forEach(book =>{ %>
+<div class="card-container">
+    <div class="card" id=<%=book.bookId %>>
+        <div class="information">
+            <strong class="name"># <div>
+                    <%= book.name %>
+                </div>
+            </strong>
+            <strong class="authName">By: <div>
+                    <%= book.author %>
+                </div>
+            </strong>
+            <strong class="category">@ <div>
+                    <%= book.category %>
+                </div>
+            </strong>
+        </div>
+        <strong class="available-books">
+            <div><%=book.availableCopies%></div>Pcs
+        </strong>
+        <div class="issue" id=<%=book.bookId %> role="button"><%= (book.availableCopies > 0) ? "Issue" : "Unavailable" %></div>
+    </div>
+</div>
+<% }); %>

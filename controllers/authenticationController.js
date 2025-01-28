@@ -16,23 +16,25 @@ async function login(req, res) {
                         { message: "Your acount is not yet approved by admin Please wait till your account is approved" });
                 }
                 req.session.user = {
-                    userId: student._id,
+                    userId: student.rollNo,
                     role: "member",
-                    username: student.firstName,
+                    userName: student.firstName,
                 };
+                console.log('req.session.user', req.session.user);
+                
                 return res.status(200).json({
                     message: "Login Successful",
                     redirect: "/member/dashboard",
                 });
             } else {
-                return res.status(401).json({ message: "Invalid credentials" });
+                return res.status(401).json({ message: "Invalid Password" });
             }
         } catch (error) {
             return res.status(500).json({ message: "Error during login" });
         }
     }
 
-    if (role === "admin") {
+    else if (role === "admin") {
         try {
             const admin = await Admin.findOne({ adminId });
             if (admin && admin.password === password) {

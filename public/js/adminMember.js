@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('adSetting/getAdminName')
             .then(response => response.json())
             .then(data => {
-                adminName.textContent =`Welcome, ${data.adminName}`;
+                adminName.textContent = `Welcome, ${data.adminName}`;
             })
             .catch(error => {
-                adminName.textContent =`Welcome, Admin`;
+                adminName.textContent = `Welcome, Admin`;
             });
     };
     getAdminName();
@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function clearMessage() {
         successMessage.textContent = "";
         failuremessage.textContent = "";
+        content.innerHTML = "";
     }
 
     function extractFormData(formId) {
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     async function fetchPending() {
         try {
+            clearMessage();
             fetch('adMember/pending', {
                 method: 'GET'
             }).then(response => {
@@ -72,23 +74,21 @@ document.addEventListener('DOMContentLoaded', function () {
                         throw new Error(responseData.message || "unable to fetch data from server");
                     })
                 }
-                console.log('response',response);
-                
+
                 return response.text();
             })
                 .then(html => {
-                    console.log('html = ',html);
-                    
-                    if(html == "No pending request found")
-                    {
-                        successMessage.textContent =html;
-                        
+
+                    if (html == "No pending request found") {
+                        successMessage.textContent = html;
+
                     }
-                    else if(html.status == 200){
+                    else {
                         document.getElementById('content').innerHTML = html;
                     }
                 })
         } catch (error) {
+            clearMessage();
             failuremessage.textContent = error.message;
         }
     }
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(parsedData => {
             clearMessage();
             successMessage.textContent = parsedData;
-            setTimeout(fetchPending, 1000);
+            fetchPending();
         }).catch(error => {
             clearMessage();
             failuremessage.textContent = error.message;

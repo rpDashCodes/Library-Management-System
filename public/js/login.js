@@ -37,8 +37,12 @@ function extractMemberData(e) {
         }
         return response.json();
     }).then(data => {
-        alert(data.message || "signIn successfull");
-        memberLoginForm.reset();
+        errorMessageElement.style.color = 'green';
+        errorMessageElement.textContent = data.message;
+        setTimeout(() => {
+            memberLoginForm.reset();
+            window.location.href = data.redirect;
+        }, 500);
     }).catch(error => {
         errorMessageElement.textContent = error.message;
 
@@ -47,7 +51,6 @@ function extractMemberData(e) {
 
 //Extract and send Admin login credential
 function extractAdminData(e) {
-    console.log('admin request');
     e.preventDefault(); // Prevent form submission for validation
     const adminLoginForm = e.target;
     const errorMessageElement = document.getElementById('error-message');

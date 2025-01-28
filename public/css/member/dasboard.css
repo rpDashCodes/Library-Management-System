@@ -1,0 +1,281 @@
+:root {
+    --color: #00ff9f;
+    --nav-color: #11f3cc;
+    --nav-background-color: #31302f;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    scrollbar-color: #444 #222; /* Thumb color, Track color */
+}
+a {
+    text-decoration: none;
+    color: black;
+
+}
+
+body {
+    height: 100vh;
+    display: flex;
+}
+#dashboard{
+    display: flex;
+}
+
+/* for navigation bar */
+nav {
+    width: 78px;
+    overflow: hidden;
+    z-index: 5;
+    background-color: var(--nav-background-color);
+    box-shadow: 2px 1px 7px 0px black;
+    transition: all 0.5s ease-in-out;
+    height: 92.6vh;
+}
+#nav-dashboard{
+    background-color: black;
+}
+.nav-option a{
+    display:flex;
+    width: 100%;
+    height: 100%;
+}
+nav:hover {
+    width: 195px;
+}
+
+nav img {
+    width: 40px;
+    filter: invert();
+}
+
+nav>ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+nav>ul>li {
+    position: relative;
+    padding: 17px 17px;
+}
+
+nav li:hover {
+    background-color: rgb(24 60 79)
+
+}
+
+nav span {
+    color: white;
+    position: absolute;
+    padding: 0px 10px;
+    top: 31px;
+    left: 65px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+main {
+    width: 100%;
+}
+
+#greet {
+    background-color: var(--nav-background-color);
+    font-size: 30px;
+    color: var(--nav-color);
+    padding: 14px 17px;
+    box-shadow: 2px 2px 4px var(--nav-color);
+    position: relative;
+    z-index: 10;
+}
+
+#greet div {
+    display: inline;
+}
+#greet #hamburger{
+    
+    display: none;
+    font-size: 30px;
+    color: white;
+    margin-right: 20px;
+}
+#hamburger:hover{
+    cursor: pointer;
+}
+
+#right-div{
+    width: 100%;
+    padding: 15px 0px 0px 15px;
+    background-color: #162526;
+}
+#operation {
+    display: grid;
+    gap: 20px;
+}
+
+label{
+    color: var(--color);
+    font: 20px bold Arial;
+}
+select{
+    background-color: var(--nav-background-color);
+    color: rgb(255, 255, 255);
+    border: 1px solid #847faf;
+    border-radius: 6px;
+    margin-left: 5px;
+    
+}
+#searchBox-container{
+    border: 3px solid #98c6c2;
+    padding: 2px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+    
+#search-input{
+    outline:0px none transparent;
+    background-color: #162526;
+    width: 80%;
+    height: 24px;
+    color: rgb(249 245 36);
+    border: 0px;
+    font-size: 20px;
+    padding: 7px 10px;
+    resize: none;
+}
+
+#search-button{
+    display: inline-block;
+    margin: 10px;
+    height: 24px;
+}
+#search-button img{
+    width: 30px;
+    cursor: pointer;
+}
+
+/* holds the functional button to do operations */
+
+
+#content {
+    height: 80vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    
+}
+
+
+/* all the clickble cards that have round corner and can be clicked */
+.card {
+    font-size: 20px;
+    padding: 20px 30px;
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #455451;
+    box-shadow: 2px 2px 5px 0px #1ddfe6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+/* bookName and member name will be on effect */
+.name {
+    color: #61acf0;
+    font-size: larger;
+    font-family: cursive;
+}
+.information{
+    display:grid;
+}
+
+/* authorname will be on effect */
+.authName {
+    color:#50eb18;
+}
+
+strong>div {
+    display: inline;
+    left: 160px;
+}
+
+/* book category will be colored */
+.category {
+    color: #fdf916;
+}
+.available-books{
+    color: #abdeee;
+}
+
+.issue{
+    color: #4755eb;
+    border: 2px solid  #00ff77;
+    background-color: #c2f1c2;
+    padding: 5px;
+    border-radius: 5px;
+}
+.issue:hover{
+    cursor: pointer;
+    background-color: #a2e9a2;
+}
+
+#server-message{
+    display: none;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+#success-message{
+    color: #000bff;
+}
+#failure-message{
+    color: #ffffff;
+}
+
+@media (max-width: 600px) {
+    nav {
+        max-width: 75px;
+    }
+
+    .card {
+        padding: 5px;
+        font-size: 0.95em;
+        margin: 0px 5px 10px 0px;
+    }
+    .numCard{
+        padding: 10px;
+        font-size: 0.95em;
+    }
+
+    nav>ul>li {
+        position: relative;
+        padding: 17px 13px;
+    }
+}
+@media (max-width: 720px) {
+    #content {
+        height: 75.2vh;
+    }
+}
+@media (max-width: 470px) {
+    #greet #hamburger {
+        display: inline-block;
+    }
+    nav{
+        position: absolute;
+        width:0px;
+        height: 94.5vh;
+    }
+    #greet {
+        color: white;
+        font-size: 20px;
+        padding: 5px 12px;
+    }
+
+}

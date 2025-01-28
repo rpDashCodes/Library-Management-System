@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard</title>
+    <link rel="stylesheet" href="/css/member/dasboard.css">
+</head>
+
+<body>
+    
+    <main>
+        <!-- contains main page that will load acording input -->
+        <div id="greet"><div id="hamburger"></div><div id="userName">Welcome, User</div></div>
+        <div id="dashboard">
+           
+            <nav id="navigation">
+                <ul id="nav-links">
+                    <li class="nav-option" id="nav-dashboard"><a href="/member/dashboard">
+                        <img src="/image/dashboard.svg" alt="">
+                        <span>Dashboard</span>
+                    </a></li>
+                    <li class="nav-option" id="nav-book"><a href="/member/book"><img src="/image/book.svg" alt="">
+                        <span>Book</span></a></li>
+                    <li class="nav-option" id="nav-setting"><a href="/member/setting"><img src="/image/setting.svg" alt="">
+                        <span>Setting</span></a></li>
+                </ul>
+            </nav>
+            <!-- all operation of dashboard -->
+            <div id="right-div">
+                <div id="operation">
+                    <div id="select-category">
+                        <label for="searchBy">Search Book By</label>
+                        <select name="searchBy" id="searchBy">
+                            <option value="Name" selected>Name</option>
+                            <option value="Category">Category</option>
+                        </select>
+
+                    </div>
+                    <div id="searchBox-container">
+                        <textarea name="search-input" id="search-input" rows="1" placeholder="Search book by Name"></textarea>
+                        <div id="search-button"><img src="/image/search.svg" alt="search"></div>
+                    </div>
+                </div>
+                <div id="server-message">
+                    <div id="success-message"></div>
+                    <div id="failure-message"></div>
+                </div>
+                <!-- content of selected operation will show in this section -->
+                <div id="content">
+                    <!-- CONTENT FROM BACKEND WILL LOAD HERE ON BUTTON CLICK -->
+                        
+                        
+                </div>
+            </div>
+        
+        </div>
+    </main>
+    <script src="/js/member/dashboard.js"></script>
+</body>
+
+</html>

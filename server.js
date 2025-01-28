@@ -13,6 +13,7 @@ import { Books, IssuedBooks } from "./Models/Books.js";
 //importing Routes
 import adminRoutes  from "./routers/adminRoutes.js";
 import genralRoutes from "./routers/generalRoutes.js";
+import memberRoutes from "./routers/memberRoutes.js";
 
 
 
@@ -53,6 +54,7 @@ app.use(express.static(publicPath));
 app.use(express.json());
 app.use("/", genralRoutes);
 app.use("/admin", adminRoutes);
+app.use('/member', memberRoutes);
 
 
 
