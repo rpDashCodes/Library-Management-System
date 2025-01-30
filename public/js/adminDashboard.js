@@ -29,8 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function applyChoice(choice, issueId) {//function to approve or reject the issue
-        console.log('choice',choice+""+issueId);
-        
         fetch(`adBook/${choice}`, {
             method: "post",
             headers: { "content-type": "application/json" },

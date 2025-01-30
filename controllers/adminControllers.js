@@ -223,7 +223,6 @@ async function getPendingIssue(req, res) {
 
 }
 async function approveIssue(req, res) {
-    console.log('approving issue');
     
     const { issueId } = req.body;
     try {
@@ -236,7 +235,6 @@ async function approveIssue(req, res) {
             book.availableCopies = book.availableCopies - 1;
             await book.save();
             await issue.save();
-            console.log('issue approved');
     
             res.status(200).json({
                 message: "Book Issue Request approved successfully"

@@ -75,10 +75,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     throw new Error(responseData.message || "unable to complete the operation");
                 })
             }
-            return response.json();
+            return response.text();
         }).then(parsedData => {
             clearMessage();
-            successMessage.textContent = parsedData;
+            if(parsedData.includes("Book Issue Request Rejected"))
+            {
+                successMessage.textContent="Book Issue Request Rejected Successfully";
+            }
+            else{
+                successMessage.textContent = "Book Issue Request Approved Successfully";
+            }
                 fetchPending();
         }).catch(error => {
             clearMessage();
@@ -146,8 +152,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     async function fetchPending() {
-        console.log('fetching pending request');
-
         try {
             fetch('adBook/pendingIssue', {
                 method: 'GET'

@@ -7,8 +7,10 @@
 * {
     margin: 0px;
     padding: 0px;
-    scrollbar-color: #444 #222; /* Thumb color, Track color */
+    scrollbar-color: #444 #222;
+    /* Thumb color, Track color */
 }
+
 a {
     text-decoration: none;
     color: black;
@@ -19,7 +21,8 @@ body {
     height: 100vh;
     display: flex;
 }
-#dashboard{
+
+#dashboard {
     display: flex;
 }
 
@@ -33,14 +36,17 @@ nav {
     transition: all 0.5s ease-in-out;
     height: 92.7vh;
 }
-#nav-dashboard{
+
+#nav-dashboard {
     background-color: black;
 }
-.nav-option a{
-    display:flex;
+
+.nav-option a {
+    display: flex;
     width: 100%;
     height: 100%;
 }
+
 nav:hover {
     width: 195px;
 }
@@ -63,7 +69,6 @@ nav>ul>li {
 
 nav li:hover {
     background-color: rgb(24 60 79)
-
 }
 
 nav span {
@@ -93,40 +98,45 @@ main {
 #greet div {
     display: inline;
 }
-#greet #hamburger{
-    
+
+#greet #hamburger {
+
     display: none;
     font-size: 30px;
     color: white;
     margin-right: 20px;
 }
-#hamburger:hover{
+
+#hamburger:hover {
     cursor: pointer;
 }
 
-#right-div{
+#right-div {
     width: 100%;
     padding: 15px 0px 0px 15px;
     background-color: #162526;
 }
+
 #operation {
     display: grid;
     gap: 20px;
 }
 
-label{
+label {
     color: var(--color);
     font: 20px bold Arial;
 }
-select{
+
+select {
     background-color: var(--nav-background-color);
     color: rgb(255, 255, 255);
     border: 1px solid #847faf;
     border-radius: 6px;
     margin-left: 5px;
-    
+
 }
-#searchBox-container{
+
+#searchBox-container {
     border: 3px solid #98c6c2;
     padding: 2px;
     border-radius: 10px;
@@ -135,9 +145,9 @@ select{
     margin-bottom: 35px;
 }
 
-    
-#search-input{
-    outline:0px none transparent;
+
+#search-input {
+    outline: 0px none transparent;
     background-color: #162526;
     width: 80%;
     height: 24px;
@@ -149,12 +159,13 @@ select{
     white-space: nowrap;
 }
 
-#search-button{
+#search-button {
     display: inline-block;
     margin: 10px;
     height: 24px;
 }
-#search-button img{
+
+#search-button img {
     width: 30px;
     cursor: pointer;
 }
@@ -166,7 +177,7 @@ select{
     height: 76vh;
     overflow-y: scroll;
     scrollbar-width: thin;
-    
+
 }
 
 
@@ -190,15 +201,16 @@ select{
 .name {
     color: #61acf0;
     font-size: larger;
-    font-family: cursive;
+    font-family: 'Times New Roman', Times, serif;
 }
-.information{
-    display:grid;
+
+.information {
+    display: grid;
 }
 
 /* authorname will be on effect */
 .authName {
-    color:#50eb18;
+    color: #50eb18;
 }
 
 strong>div {
@@ -210,32 +222,36 @@ strong>div {
 .category {
     color: #fdf916;
 }
-.available-books{
+
+.available-books {
     color: #abdeee;
 }
 
-.issue{
+.issue {
     color: #4755eb;
-    border: 2px solid  #00ff77;
+    border: 2px solid #00ff77;
     background-color: #c2f1c2;
     padding: 5px;
     border-radius: 5px;
 }
-.issue:hover{
+
+.issue:hover {
     cursor: pointer;
     background-color: #a2e9a2;
 }
 
-#server-message{
+#server-message {
     display: none;
     padding: 5px;
     border-radius: 5px;
     text-align: center;
 }
-#success-message{
+
+#success-message {
     color: #000bff;
 }
-#failure-message{
+
+#failure-message {
     color: #ffffff;
 }
 
@@ -249,7 +265,8 @@ strong>div {
         font-size: 0.95em;
         margin: 0px 5px 10px 0px;
     }
-    .numCard{
+
+    .numCard {
         padding: 10px;
         font-size: 0.95em;
     }
@@ -259,19 +276,27 @@ strong>div {
         padding: 17px 13px;
     }
 }
+
 @media (max-width: 470px) {
     #greet #hamburger {
         display: inline-block;
     }
-    nav{
+
+    nav {
         position: absolute;
-        width:0px;
+        width: 0px;
         height: 94.35vh;
     }
+
     #greet {
         color: white;
         font-size: 20px;
         padding: 5px 12px;
+    }
+
+    #search-input {
+        font-size: 18px;
+        padding: 9px 10px;
     }
 
 }

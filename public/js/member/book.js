@@ -48,14 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
     pastBook.addEventListener("click",()=> fetchBooks("past"));
 
     function fetchBooks(type) {
-        console.log('type', type);
-        
-            clearMessage();
+   clearMessage();
             fetch(`/member/book/${type}`, {
                 method: 'GET'
             }).then(response => {
-                console.log('response', response);
-                
                 if (!response.ok) {
                     return response.json().then(responseData => {
                         throw new Error(responseData.message || "unable to complete the operation");
@@ -64,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 return response.text();
             }).then(html => {
                 if (html.includes("No Issue Found")) {
-                    console.log('html', html);
                     
                     clearMessage();
                     content.innerHTML = "";
@@ -75,9 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         serverMessage.style.display = "none";
                     }, 7000);
                 }
-                else {
-                    console.log('html', html);
-                    
+                else {  
                     content.innerHTML = html;
                 }
             }).catch(error => {

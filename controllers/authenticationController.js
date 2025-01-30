@@ -20,7 +20,6 @@ async function login(req, res) {
                     role: "member",
                     userName: student.firstName,
                 };
-                console.log('req.session.user', req.session.user);
                 
                 return res.status(200).json({
                     message: "Login Successful",
