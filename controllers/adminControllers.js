@@ -85,14 +85,14 @@ async function getAdminBook(req, res) {
 };
 
 async function getActiveIssues(req, res) {
-    const activeIssues = await IssuedBooks.find({
+    let activeIssues = await IssuedBooks.find({
         $or: [
           { issueStatus: "Pending" },
           { issueStatus: "Approved" }
         ],
         isReturned: false
       });
-      
+      activeIssues = activeIssues.reverse();
     if (activeIssues.length == 0) {
         res.send("No Issued Book found");
     }

@@ -1,9 +1,5 @@
-import Admin from "../Models/Admin.js";
 import { Books, IssuedBooks } from "../Models/Books.js";
 import User from "../Models/User.js";
-import Counter from "../Models/Counter.js";
-
-import { nameRefactor } from "./utility.js";
 import path from 'path';
 
 import { __dirName } from "../server.js";
@@ -30,28 +26,15 @@ async function searchBook(req, res) {
 
     let books;
     try {
-        if (searchBy === "category") {
-            books = await Books.find({ category: { $regex: searchInput, $options: 'i' } });
-
-            if (books.length > 0) {
-                res.render('partial/member/book', { books: books });
-
-            }
-            else {
-                res.json({ message: "No books found" });
-            }
-        }
-        else {
             books = await Books.find({ [searchBy]: { $regex: searchInput, $options: 'i' } });
 
-
             if (books.length > 0) {
                 res.render('partial/member/book', { books: books });
+
             }
             else {
                 res.json({ message: "No books found" });
             }
-        }
 
     } catch (error) {
         res.json({ message: "can't reach to server try aagain later" });
@@ -209,10 +192,10 @@ async function getBook(req, res) {
 async function getActiveBooks(req, res) {//to send book request either pending or approve
     const userId = req.session.user.userId;
     try {
-        const recentIssuedBooks = await IssuedBooks.find({
+        let recentIssuedBooks = await IssuedBooks.find({
             memberId: userId, $or: [{ issueStatus: "Pending" }, { issueStatus: "Approved" }]
         });
-        
+        recentIssuedBooks = recentIssuedBooks.reverse();
         if (recentIssuedBooks.length > 0) {
             res.render('partial/member/bookRecord', { Issues: recentIssuedBooks });
         }
@@ -227,10 +210,10 @@ async function getActiveBooks(req, res) {//to send book request either pending o
 async function getPastBooks(req, res) {//to send book request either returned or rejected
     const userId = req.session.user.userId;
     try {
-        const previousIssuedBooks = await IssuedBooks.find({
+        let previousIssuedBooks = await IssuedBooks.find({
             memberId: userId, $or: [{ issueStatus: "Rejected" }, { issueStatus: "Returned" }]
         });
-        
+        previousIssuedBooks = previousIssuedBooks.reverse();
         if (previousIssuedBooks.length > 0) {
             res.render('partial/member/bookRecord', { Issues: previousIssuedBooks });
         }
