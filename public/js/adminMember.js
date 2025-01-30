@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (html == "No pending request found") {
                         successMessage.textContent = html;
-
                     }
                     else {
                         document.getElementById('content').innerHTML = html;
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById("unblockUserForm-container").style.display = "block";
 
     });
-
+    
     function applyChoice(choice, rollNo) {//function to approve or reject the member
         fetch(`adMember/${choice}`, {
             method: "post",

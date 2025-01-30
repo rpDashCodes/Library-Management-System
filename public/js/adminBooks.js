@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const updateBookButton = document.getElementById("updateBookButton");
     const deleteBookButton = document.getElementById("deleteBookButton");
     const collectBookButton = document.getElementById("collectBookButton");
+    const pendingIssueButton = document.getElementById("pendingIssueButton");
     const forms = Array.from(document.getElementsByTagName("form"));
     const successMessage = document.getElementById('successMessage');
     const failureMessage = document.getElementById('failureMessage');
@@ -14,10 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('adSetting/getAdminName')
             .then(response => response.json())
             .then(data => {
-                adminName.textContent =`Welcome, ${data.adminName}`;
+                adminName.textContent = `Welcome, ${data.adminName}`;
             })
             .catch(error => {
-                adminName.textContent =`Welcome, Admin`;
+                adminName.textContent = `Welcome, Admin`;
             });
     };
     getAdminName();
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById("updateBookForm-container").style.display = "none";
         document.getElementById("deleteBookForm-container").style.display = "none";
         document.getElementById("collectBookForm-container").style.display = "none";
+        document.getElementById("pendingList").style.display = "none";
     }
     function clearMessage() {
         successMessage.textContent = "";
@@ -60,6 +62,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         return data;
 
+    }
+
+    function applyChoice(choice, issueId) {//function to approve or reject the member
+        fetch(`adBook/${choice}`, {
+            method: "post",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ issueId: issueId })
+        }).then(response => {
+            if (!response.ok) {
+                return response.json().then(responseData => {
+                    throw new Error(responseData.message || "unable to complete the operation");
+                })
+            }
+            return response.json();
+        }).then(parsedData => {
+            clearMessage();
+            successMessage.textContent = parsedData;
+                fetchPending();
+        }).catch(error => {
+            clearMessage();
+            failureMessage.textContent = error.message;
+        })
     }
 
     addBookButton.addEventListener('click', function () {
@@ -85,6 +109,12 @@ document.addEventListener('DOMContentLoaded', function () {
         clearMessage();
         document.getElementById("collectBookForm-container").style.display = "block";
 
+    });
+    pendingIssueButton.addEventListener('click', function () {
+        hideAllForm();
+        clearMessage();
+        document.getElementById("pendingList").style.display = "block";
+        fetchPending();
     });
 
     forms.forEach(form => {
@@ -113,5 +143,49 @@ document.addEventListener('DOMContentLoaded', function () {
             })
 
         });
+    });
+
+    async function fetchPending() {
+        console.log('fetching pending request');
+
+        try {
+            fetch('adBook/pendingIssue', {
+                method: 'GET'
+            }).then(response => {
+                if (!response.ok) {
+                    return response.json().then(responseData => {
+                        throw new Error(responseData.message || "unable to fetch data from server");
+                    })
+                }
+
+                return response.text();
+            })
+                .then(html => {
+
+                    if (html == "No pending request found") {
+                        clearMessage();
+                        hideAllForm();
+                        successMessage.textContent = html;
+                    }
+                    else {
+                        document.getElementById('pendingList').innerHTML = html;
+                    }
+                })
+        } catch (error) {
+            clearMessage();
+            failureMessage.textContent = error.message;
+        }
+    }
+
+
+    content.addEventListener('click', function (e) {
+        if (e.target.classList.contains('approve-button')) {
+            const issueId = e.target.id;
+            applyChoice('approveIssue', issueId);
+        }
+        else if (e.target.classList.contains('reject-button')) {
+            const issueId = e.target.id;
+            applyChoice('rejectIssue', issueId);
+        }
     });
 });

@@ -1,0 +1,31 @@
+<!-- this file is for showing the his past taken books -->
+<% Issues.forEach((issue)=>{ %>
+    <div class="card-container card">
+        <div class="member-card">
+            <div class="information">
+                <strong class="issueId">Issue Id: <div>
+                        <%= issue.issueId %>
+                    </div></strong>
+                <strong class="bookName">Book Name:<div>
+                        <%= issue.bookName%>
+                    </div></strong>
+                <strong class="date">Issue Date:<div>
+                        <%= issue.issueDate %>
+                    </div></strong>
+                <% if(issue.isReturned==true){ %>
+                    <strong class="date">Returned On:<div>
+                            <%= issue.returnDate %>
+                        </div></strong>
+                    <% } else if(issue.issueStatus == "Pending" || issue.issueStatus == "Approved") {%>
+                        <strong class="date">Return By:<div>
+                            <%= issue.returnBy %>
+                        </div></strong>
+                        <%}%>
+
+            </div>
+            <div class="status">
+                <%= issue.issueStatus %>
+            </div>
+        </div>
+    </div>
+    <% }); %>

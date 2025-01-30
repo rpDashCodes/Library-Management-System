@@ -31,7 +31,7 @@ nav {
     background-color: var(--nav-background-color);
     box-shadow: 2px 1px 7px 0px black;
     transition: all 0.5s ease-in-out;
-    height: 92.6vh;
+    height: 92.7vh;
 }
 #nav-dashboard{
     background-color: black;
@@ -146,6 +146,7 @@ select{
     font-size: 20px;
     padding: 7px 10px;
     resize: none;
+    white-space: nowrap;
 }
 
 #search-button{
@@ -162,7 +163,7 @@ select{
 
 
 #content {
-    height: 80vh;
+    height: 76vh;
     overflow-y: scroll;
     scrollbar-width: thin;
     
@@ -258,11 +259,6 @@ strong>div {
         padding: 17px 13px;
     }
 }
-@media (max-width: 720px) {
-    #content {
-        height: 75.2vh;
-    }
-}
 @media (max-width: 470px) {
     #greet #hamburger {
         display: inline-block;
@@ -270,7 +266,7 @@ strong>div {
     nav{
         position: absolute;
         width:0px;
-        height: 94.5vh;
+        height: 94.35vh;
     }
     #greet {
         color: white;

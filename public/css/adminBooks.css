@@ -194,10 +194,7 @@ input[value='Remove']:hover{
     border: 1px solid #10e86a;
 }
 
-.id {
 
-    color: red;
-}
 #serverMessage{
     text-align: center;
     font: 1em sans-serif;
@@ -210,6 +207,48 @@ input[value='Remove']:hover{
 #failureMessage{
     color: red;
 }
+
+/* for ejs elements */
+
+.member-card{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.information{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+}
+strong div{
+    display: inline;
+}
+.issueId{
+    color: red;
+}
+.userName{
+    color: blue;
+}
+.bookName{
+    color: green;
+}
+.date{
+    color: purple;
+}
+.action-button{
+    display: inline-block;
+}
+.action-button img{
+    margin-bottom: 10px;
+    width: 20px;
+    margin: 10px;
+}
+.action-button img:hover{
+    cursor: pointer;
+}
+
+/* for responsive design */
 @media (max-width: 720px) {
     #content {
         height: 75.2vh;
@@ -245,6 +284,10 @@ input[value='Remove']:hover{
         color: white;
         font-size: 20px;
         padding: 5px 12px;
+    }
+    .action-button img{
+        margin: 10px 5px 0px 0px;
+        width: 20px;
     }
 
 }

@@ -223,6 +223,7 @@ input:hover{
     .card {
         padding: 5px;
         font-size: 0.95em;
+        margin: 0px 5px 10px 0px;
     }
 
     nav>ul>li {
@@ -230,21 +231,27 @@ input:hover{
         padding: 17px 13px;
     }
 }
+@media (max-width: 720px) {
+    #content {
+        height: 75.2vh;
+    }
+}
 @media (max-width: 470px) {
     #greet #hamburger {
         display: inline-block;
     }
     nav{
-        background-color: #abe6ceeb;
         position: absolute;
         width:0px;
         height: 94.5vh;
     }
     #greet {
-        background-color: black;
         color: white;
         font-size: 20px;
         padding: 5px 12px;
+    }
+    #right-div{
+        height: 92.8vh;
     }
 
 }

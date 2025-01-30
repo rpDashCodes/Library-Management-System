@@ -4,6 +4,7 @@ import User from "../Models/User.js";
 import Counter from "../Models/Counter.js";
 
 import { nameRefactor } from "./utility.js";
+import {formatDate} from "./memberController.js"
 import path from 'path';
 
 import { __dirName } from "../server.js";
@@ -23,7 +24,13 @@ async function getAdminDashboard(req, res) {
         ]);
         const totalAvailableBooks = numberOfAvailableBooks[0]?.total || 0;
 
-        const issuedBooksCount = await IssuedBooks.countDocuments();
+        const issuedBooksCount = await IssuedBooks.countDocuments({
+            $or: [
+              { issueStatus: "Pending" },
+              { issueStatus: "Approved" }
+            ],
+            isReturned: false
+          });
         const memberCount = await User.countDocuments({ isApproved: true });
         const requestCount = await User.countDocuments({ isApproved: false });
 
@@ -77,6 +84,23 @@ async function getAdminBook(req, res) {
     };
 };
 
+async function getActiveIssues(req, res) {
+    const activeIssues = await IssuedBooks.find({
+        $or: [
+          { issueStatus: "Pending" },
+          { issueStatus: "Approved" }
+        ],
+        isReturned: false
+      });
+      
+    if (activeIssues.length == 0) {
+        res.send("No Issued Book found");
+    }
+    else {
+        res.render('partial/issuedBooks', { activeIssues });
+    }
+}
+
 async function generateBookID() {
     try {
         const counter = await Counter.findOneAndUpdate(
@@ -118,7 +142,7 @@ async function updateBook(req, res) {
         isNaN(addQuantity) ? addQuantity = 0 : parseInt(addQuantity);
         isNaN(removeQuantity) ? removeQuantity = 0 : parseInt(removeQuantity);
 
-        const book = await Books.findOne({ name: bookName });      
+        const book = await Books.findOne({ name: bookName });
 
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
@@ -155,7 +179,101 @@ async function deleteBook(req, res) {
         res.status(500).json({ message: ` Error While Deleting Book` });
     }
 }
+async function collectBook(req,res){
+    const issueId = req.body.issueId;
+    
+    try{
+        const issue = await IssuedBooks.findOne({ issueId: issueId,isApproved:true });
+        if(issue)
+        {
+            if(issue.isApproved == false)
+            {
+                throw new Error("Issue not approved yet");
+            }
+            else{
+                issue.isReturned = true;
+                issue.returnDate =  formatDate(new Date());
+                issue.issueStatus = "Returned";
+                await issue.save();
+                const book = await Books.findOne({ bookId: issue.bookId });
+                book.availableCopies = book.availableCopies + 1;
+                await book.save();
+                res.status(200).json({message: "Book collected successfully"});
+            }
+        }
+        else{
+            throw new Error("Issue not found");
+        }
+    }catch(error){
+        res.status(500).json({message: error});
+    }
+    
 
+}
+
+async function getPendingIssue(req, res) {
+
+    const pendingIssue = await IssuedBooks.find({$and:[{issueStatus:"Pending"},{isApproved:false}]});
+    if (pendingIssue.length == 0) {
+        res.send("No pending request found");
+    }
+    else {
+        res.render('partial/pendingBook', { pendingIssue });
+    }
+
+}
+async function approveIssue(req, res) {
+    console.log('approving issue');
+    
+    const { issueId } = req.body;
+    try {
+        const issue = await IssuedBooks.findOne({ issueId: issueId });
+        if(issue)
+        {
+            issue.isApproved = true;
+            issue.issueStatus = "Approved";
+            const book = await Books.findOne({ bookId: issue.bookId });
+            book.availableCopies = book.availableCopies - 1;
+            await book.save();
+            await issue.save();
+            console.log('issue approved');
+    
+            res.status(200).json({
+                message: "Book Issue Request approved successfully"
+            });
+        }
+        else{
+            throw new Error("Issue record not found");
+        }
+       
+    } catch (error) {
+        console.log('Error approving issue',error);
+        res.status(500).json({ message: "Error approving issue try again later" });
+    }
+}
+async function rejectIssue(req, res) {
+    const { issueId } = req.body;
+    try {
+        const issue = await IssuedBooks.findOne({ issueId: issueId });
+        if (issue) {
+            issue.issueStatus = "Rejected";
+            await issue.save();
+            res.status(200).json({
+                message: "Book Issue Request Rejected"
+            });
+        }
+        else {
+            throw new Error("Issue not found");
+        }
+
+    } catch (error) {
+        console.log('Error rejecting issue',error);
+        
+        res.status(500).json({ message: "Error rejecting issue try again later" });
+    }
+}
+
+// member page related functions
 function getAdminMembersPage(req, res) {
     const filePath = path.join(__dirName, "resource", 'adminMember.html');
     res.sendFile(filePath);
@@ -164,7 +282,7 @@ function getAdminMembersPage(req, res) {
 async function getPendingRequest(req, res) {
     const pendingMembers = await User.find({ isApproved: false });
     if (pendingMembers.length == 0) {
-        res.send( "No pending request found" );
+        res.send("No pending request found");
     }
     else {
         res.render('partial/pendingMember', { pendingMembers });
@@ -194,7 +312,7 @@ async function rejectMember(req, res) {
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
-        await user.deleteOne({ rollNo: rollNo });
+        await User.deleteOne({ rollNo: rollNo });
         res.status(200).json({ message: "User rejected successfully" });
     } catch (error) {
         res.status(500).json({ message: "Error rejecting user try again later" });
@@ -261,52 +379,52 @@ function getAdminSettings(req, res) {
 
 async function changeAdminName(req, res) {
 
-    try{
+    try {
         let { firstName, lastName } = req.body;
         firstName = nameRefactor(firstName);
         lastName = nameRefactor(lastName);
-        const admin =await Admin.findOne({ adminId: req.session.user.userId });
-        if(admin){
+        const admin = await Admin.findOne({ adminId: req.session.user.userId });
+        if (admin) {
 
             admin.firstName = firstName;
             admin.lastName = lastName;
             await admin.save();
-            res.status(200).json({message:"Name changed Successfully",redirect:"/"});
+            res.status(200).json({ message: "Name changed Successfully", redirect: "/" });
         }
-        else{
-            res.status(500).json({message:"Admin not found please try again later"});
+        else {
+            res.status(500).json({ message: "Admin not found please try again later" });
         }
-    }catch(error){
-        res.status(500).json({message:"Error while changing Name"});
+    } catch (error) {
+        res.status(500).json({ message: "Error while changing Name" });
     }
-   
+
 }
 async function changePassword(req, res) {
 
-    try{
+    try {
         let { oldPassword, newPassword } = req.body;
         const admin = await Admin.findOne({ adminId: req.session.user.userId });
-        
-        if(oldPassword == admin.password)
-        {
+
+        if (oldPassword == admin.password) {
             admin.password = newPassword;
             await admin.save();
-            res.status(200).json({message:"Password changed Successfully"});
+            res.status(200).json({ message: "Password changed Successfully" });
         }
-        else{
-            res.status(500).json({message:"Incorrect Password Re-enter old password "});
+        else {
+            res.status(500).json({ message: "Incorrect Password Re-enter old password " });
         }
-        
-        
-    }catch(error){
-        res.status(500).json({message:"Error while changing "});
+
+
+    } catch (error) {
+        res.status(500).json({ message: "Error while changing Password" });
     }
-   
+
 }
 
 
 export {
-    getAdminDashboard, getAdminName, fetchNumber, getAllBook, getAllMember, getAdminBook, addBook,
-    updateBook, deleteBook, getAdminMembersPage, getPendingRequest, approveMember, rejectMember,
+    getAdminDashboard, getAdminName, fetchNumber, getAllBook, getAllMember, getAdminBook, getActiveIssues, addBook,
+    updateBook, deleteBook, collectBook, getPendingIssue, approveIssue, rejectIssue, getAdminMembersPage, getPendingRequest, approveMember, rejectMember,
     blockMember, deleteMember, unblockMember, getAdminSettings, changeAdminName, changePassword
+
 };

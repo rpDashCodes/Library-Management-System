@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    
+
     <main>
         <div id="greet"><div id="hamburger"></div><div id="adName">Welcome, !</div></div> 
         <!-- contains main page that will load acording input -->
@@ -47,6 +47,10 @@
                    <div class="image"><img src="/image/return.svg" alt=""></div>
                    <div>Collect Book</div>
                 </div>
+                <div id="pendingIssueButton" class="option card">
+                   <div class="image"><img src="/image/pendingIssue.svg" alt=""></div>
+                   <div>Pending Issues</div>
+                </div>
               
            </div>
 
@@ -63,6 +67,7 @@
                            <input type="submit" value="Add Book">
                        </form>
                    </div>
+                   <div id="pendingList"></div>
                    <div id="updateBookForm-container" class="form-container card">
                        <div id="form-title">Update Book</div>
                        <form  id="updateBookForm">

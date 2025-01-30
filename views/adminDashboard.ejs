@@ -34,11 +34,14 @@
                 <div id="operation">
                     <div class="numCard" id="member"><div class="number"><%=numberOfMembers%></div> <div>Member </div></div>
                     <div class="numCard" id="book"><div class="number"><%=numberOfBooks%></div> <div>Books</div> </div>
-                    <div class="numCard" id="issuedBook"><div class="number"><%=numberOfIssuedBooks%></div><div>Issued Books</div> </div>
+                    <div class="numCard" id="issuedBooks"><div class="number"><%=numberOfIssuedBooks%></div><div>Issued Books</div> </div>
                     <div class="numCard" id="availableBooks"><div class="number"><%=availableBooks%></div><div>Available Books</div> </div>
                     <div class="numCard" id="pendingRequest"><div class="number"><%=pendingRequests%></div><div>Pending Requests</div> </div>
                 </div>
-    
+                <div id="serverMessage">
+                    <div id="successMessage"></div>
+                    <div id="failureMessage"></div>
+                </div>
                 <!-- content of selected operation will show in this section -->
                 <div id="content">
                     <!-- CONTENT FROM BACKEND WILL LOAD HERE ON BUTTON CLICK -->

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const memberName = document.getElementById('userName');
     function getMemberName() {
-        fetch('/dashboard/getMemberName')
+        fetch('getMemberName')
             .then(response => response.json())
             .then(data => {
                 memberName.textContent =`Welcome, ${data.name}`;

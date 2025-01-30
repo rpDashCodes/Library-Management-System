@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const issuedBooksButton = document.getElementById("issuedBooks");//targets the issuedBooks div which on click will show all issued books in the content container
     const availableBooksButton = document.getElementById("availableBooks");//targets the availableBooks div which on click will show all available books in the content container
     const pendingRequestsButton = document.getElementById("pendingRequest");//targets the pendingRequests div which on click will show all pending requests in the content container
+    const successMessage = document.getElementById('successMessage');
+    const failureMessage = document.getElementById('failureMessage');
 
     hamburger.textContent = "☰";
     hamburger.addEventListener("click", () => {
@@ -21,6 +23,53 @@ document.addEventListener("DOMContentLoaded", () => {
             greet.style.padding = '5px 12px';
         }
     });
+    function clearMessage() {
+        successMessage.textContent = "";
+        failureMessage.textContent = "";
+    }
+
+    function applyChoice(choice, issueId) {//function to approve or reject the issue
+        console.log('choice',choice+""+issueId);
+        
+        fetch(`adBook/${choice}`, {
+            method: "post",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ issueId: issueId })
+        }).then(response => {
+            if (!response.ok) {
+                return response.json().then(responseData => {
+                    throw new Error(responseData.message || "unable to complete the operation");
+                })
+            }
+            return response.json();
+        }).then(parsedData => {
+            
+            clearMessage();
+            successMessage.textContent = parsedData.message;
+                fetchIssuedBooks();
+        }).catch(error => {
+            clearMessage();
+            failureMessage.textContent = error.message;
+        })
+    }
+
+    function fetchIssuedBooks() {
+        clearMessage();
+        document.getElementById("content").innerHTML='';
+        fetch('/admin/adDashboard/issuedBooks', {
+            method: 'GET',
+        }).then(response => response.text())
+            .then(html => {
+                if(html.includes("No Issued"))
+                {
+                    successMessage.textContent = html;
+                }
+                else{
+                    const contentDiv = document.getElementById('content');
+                contentDiv.innerHTML = html;
+                }
+            })
+    }
     
     pendingRequestsButton.addEventListener("click", () => {
         window.location.href = "/admin/adMember";
@@ -28,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     booksButton.addEventListener("click", () => {
+        clearMessage();
         fetch('/admin/adDashboard/book', {
             method: 'GET',
         }).then(response => response.text())
@@ -38,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     membersButton.addEventListener("click", () => {
+        clearMessage();
         fetch('/admin/adDashboard/member', {
             method: 'GET',
         }).then(response => response.text())
@@ -45,5 +96,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 const contentDiv = document.getElementById('content');
                 contentDiv.innerHTML = html;
             })
+    });
+
+    issuedBooksButton.addEventListener("click", fetchIssuedBooks);
+    content.addEventListener('click', function (e) {//function to get choice approve or reject the issue
+        if (e.target.classList.contains('approve-button')) {
+            const issueId = e.target.id;
+            applyChoice('approveIssue', issueId);
+        }
+        else if (e.target.classList.contains('reject-button')) {
+            const issueId = e.target.id;
+            applyChoice('rejectIssue', issueId);
+        }
+        else if(e.target.classList.contains('collect')){
+            const issueId = e.target.id;
+            console.log('issueId',issueId);
+            applyChoice('collectBookForm', issueId);//it will hit the collectBookForm endpoint in book section
+        }
     });
 });

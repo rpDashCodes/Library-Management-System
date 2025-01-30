@@ -1,3 +1,8 @@
+:root {
+    --color: #00ff9f;
+    --nav-color: #11f3cc;
+    --nav-background-color: #31302f;
+}
 * {
     margin: 0px;
     padding: 0px;
@@ -6,39 +11,42 @@
 a {
     text-decoration: none;
     color: black;
-
 }
 
 body {
-    height: 100vh;
+
     display: flex;
 }
 
-
+#book{
+    display: flex;
+}
 /* for navigation bar */
 nav {
     width: 78px;
     overflow: hidden;
     z-index: 5;
-    background-color: #e6c9ab;
+    background-color: var(--nav-background-color);
     box-shadow: 2px 1px 7px 0px black;
     transition: all 0.5s ease-in-out;
     height: 92.6vh;
 }
-#nav-dashboard{
-    background-color: #a58beb;
+#nav-book{
+    background-color: black;
+}
+
+nav:hover {
+    width: 195px;
 }
 .nav-option a{
     display:flex;
     width: 100%;
     height: 100%;
 }
-nav:hover {
-    width: 195px;
-}
 
 nav img {
     width: 40px;
+    filter: invert();
 }
 
 nav>ul {
@@ -53,34 +61,35 @@ nav>ul>li {
 }
 
 nav li:hover {
-    background-color: rgb(176, 176, 176);
+    background-color: rgb(24 60 79)
 
 }
 
 nav span {
+    color: white;
     position: absolute;
     padding: 0px 10px;
     top: 31px;
     left: 65px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-#dashboard{
-    display: flex;
-}
+
+
 #right-div{
     width: 100%;
+    padding: 15px 0px 0px 15px;
+    background-color: #162526;
 }
-
 main {
     width: 100%;
 }
 
 #greet {
-    background-color: #e6c9ab;
+    background-color: var(--nav-background-color);
     font-size: 30px;
-    color: #0607ff;
+    color: var(--nav-color);
     padding: 14px 17px;
-    box-shadow: 2px 2px 4px #280ceb;
+    box-shadow: 2px 2px 4px var(--nav-color);
     position: relative;
     z-index: 10;
 }
@@ -91,7 +100,7 @@ main {
 #greet #hamburger{
     
     display: none;
-    font-size: 30px;
+    font-size: 35px;
     color: white;
     margin-right: 20px;
 }
@@ -104,120 +113,48 @@ main {
     display: flex;
     flex-wrap: wrap;
 }
-
-#content {
-    border: 2px solid blueviolet;
-    overflow-y: scroll;
-    height: 80vh;
+.image img{
+    width: 25px;
 }
 
-.numCard {
-    font-size: 20px;
-    padding: 20px 30px;
-    border: 1px solid black;
-    margin: 10px;
-    border-radius: 6px;
-    background-color: white;
-    box-shadow: 1px 2px 6px 0px #0607ff;
-    color: chocolate;
+.option:hover{
+ cursor: pointer;
+ background-color: #b5eed1;
+}
+.option:active{
+    background-color: #7fc38b;
+}
+strong div{
+    display: inline;
 }
 
-.numCard:hover {
-    cursor: pointer;
-    background-color: #ebeff0;
-}
-
-.numCard:active {
-    background-color: #deedbf;
-}
-
-.number {
-    text-align: center;
-    color: green;
-}
 
 /* all the clickble cards that have round corner and can be clicked */
 .card {
     font-size: 20px;
-    padding: 20px 30px;
-    border: 1px solid black;
+    padding: 12px 20px;
+    border: 2px solid #00ff06;
     margin: 10px;
     border-radius: 6px;
-    background-color: white;
-    box-shadow: 1px 2px 6px 0px #0607ff;
+    background-color: #cae6e0;
+    box-shadow: 2px 2px 5px 0px #01d46f;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
     align-items: center;
 
 }
 
-.card strong {
-    display: block;
-}
 
-.card-container:hover {
-
-    .delete {
-        display: block;
-    }
-}
-
-.available-books {
-    position: relative;
-    color: forestgreen;
-    float: right;
-}
-
-.delete {
-    display: none;
-    position: relative;
-    margin-top: 10px;
-}
-.delete:hover{
-    cursor: pointer;
-}
-
-.delete img {
-    width: 20px;
-}
-
-/* bookName and member name will be on effect */
-.name {
-    color: green;
-    font-size: larger;
-    font-family: cursive;
-}
-
-/* authorname will be on effect */
-.authName {
-    color: red;
-}
-
-strong>div {
-    display: inline;
-    left: 160px;
-}
-
-/* book category will be colored */
-.category {
-    color: blue;
-}
-
-.id {
-
-    color: red;
-}
 #serverMessage{
     text-align: center;
     font: 1em sans-serif;
 }
-#successMessage{
-    color: green;
-    font: 1em sans-serif;
-
+#sucessMessage{
+    color: blue;
 }
 #failureMessage{
-    color: red;
+    color: white;
 }
 /* for issued books ejs */
 .member-card{
@@ -229,16 +166,12 @@ strong>div {
     color: green;
     height: 24px;
     margin: auto;
-    padding: 0px 10px;
 }
 .information{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 80%;
-}
-strong div{
-    display: inline;
 }
 .issueId{
     color: red;
@@ -252,32 +185,9 @@ strong div{
 .date{
     color: purple;
 }
-.action{
-    width: 30px;
-}
-.action-button{
-    display: inline-block;
-}
-.action-button img{
-    margin-bottom: 10px;
-    width: 20px;
-    margin: 10px;
-}
-.action-button img:hover{
-    cursor: pointer;
-}
-.collect{
-    background-color: #4a55d9;
-    height: 25px;
-    color: #ffffff;
-    margin: auto;
-    padding: 6px 10px;
-    border-radius: 5px;
-}
-.collect:hover{
-    background-color: #3441de;
-    cursor: pointer;
-}
+
+/* for the responsive design */
+
 @media (max-width: 600px) {
     nav {
         max-width: 75px;
@@ -286,10 +196,7 @@ strong div{
     .card {
         padding: 5px;
         font-size: 0.95em;
-    }
-    .numCard{
-        padding: 10px;
-        font-size: 0.95em;
+        margin: 0px 5px 10px 0px;
     }
 
     nav>ul>li {
@@ -307,16 +214,17 @@ strong div{
         display: inline-block;
     }
     nav{
-        background-color: #abe6ceeb;
         position: absolute;
         width:0px;
         height: 94.5vh;
     }
     #greet {
-        background-color: black;
         color: white;
         font-size: 20px;
         padding: 5px 12px;
+    }
+    #right-div{
+        height: 92.63vh;
     }
 
 }

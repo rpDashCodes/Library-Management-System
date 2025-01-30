@@ -12,12 +12,15 @@ const booksSchema = new mongoose.Schema({
 const issuedBooksSchema = new mongoose.Schema({
     bookId:{type:String,required:true},
     issueId:{type:String,required:true,unique:true},
+    bookName:{type:String,required:true},
     issueDate:{type:String,required:true},
     returnBy:{type:String,required:true},
     isReturned:Boolean,
     returnDate:String,
     memberId:String,
-    isApproved:Boolean
+    memberName:String,
+    isApproved:Boolean,
+    issueStatus:{type:String,required:true}
 },{collection:"issuedBooks"});
 
 const Books = mongoose.model('Books',booksSchema);

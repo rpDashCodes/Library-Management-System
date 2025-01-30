@@ -1,0 +1,22 @@
+<% activeIssues.forEach((issue)=>{ %>
+    <div class="card-container card">
+        <div class="member-card">
+            <div class="information">
+                <strong class="issueId">Issue Id: <div><%= issue.issueId %></div></strong>
+                <strong class="userName">Issued By:<div><%= issue.memberName %></div></strong>
+                <strong class="bookName">Required Book:<div><%= issue.bookName%></div></strong>
+                <strong class="date">Issue Date:<div><%= issue.issueDate %></div></strong>
+            </div>
+            <div class="status"><%= issue.issueStatus %></div>
+            <% if(issue.issueStatus == "Pending") {%>
+                <div class="action">
+                    <div class="action-button" role="button"><img src="/image/approve.svg" id="<%= issue.issueId %>" class="approve-button"></div>
+                    <div class="action-button" role="button"><img src="/image/delete.svg" id="<%= issue.issueId %>" class="reject-button"></div>
+                </div>
+            <% }%>
+            <% if(issue.issueStatus == "Approved") {%>
+                <div class="collect" id="<%= issue.issueId%>">Collect</div>
+                <%}%>
+        </div>
+    </div>
+    <% }); %>

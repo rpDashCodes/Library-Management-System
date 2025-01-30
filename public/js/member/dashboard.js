@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const failureMessage = document.getElementById('failure-message');
     const serverMessage = document.getElementById('server-message');
     const content = document.getElementById('content');
-    let searchBy ="name";
+    let searchBy = "name";
 
 
     hamburger.textContent = "☰";
@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 userName.textContent = `Welcome, ${data.name}`;
             })
             .catch(error => {
-                console.log(error);
                 userName.textContent = `Welcome, User`;
             });
     };
@@ -52,37 +51,60 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     );
 
-    searchButton.addEventListener("click", () => {
+    function fetchBooks() {
         const searchInput = document.getElementById('search-input').value;
-        
+
         if (searchInput != "") {
             clearMessage();
-            const bookSearch ={
+            const bookSearch = {
                 searchBy: searchBy.toLowerCase(),
                 searchInput: searchInput
-            }
-            console.log('searchInput', bookSearch);
-            
+            };
             fetch('/member/dashboard/search', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(bookSearch)
-            }).then(response => response.text())
-                .then(data => {
-                    if (data.success) {
-                        console.log('data',data);
-                        
-                        document.getElementById('content').innerHTML = data;
-                    }
-                    else {
-                        document.getElementById('content').innerHTML = data;
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            }).then(response => {
+                if (!response.ok) {
+                    return response.json().then(responseData => {
+                        throw new Error(responseData.message || "unable to complete the operation");
+                    })
+                }
+                return response.text();
+            }).then(html => {
+                if (html.includes("No books found")) {
+                    clearMessage();
+                    content.innerHTML = "";
+                    serverMessage.style.display = "block";
+                    serverMessage.style.backgroundColor = '#a62f44';
+                    failureMessage.textContent = "No books found try searching with different keyword";
+                    setTimeout(() => {
+                        serverMessage.style.display = "none";
+                    }, 7000);
+                }
+                else {
+
+                    content.innerHTML = html;
+                }
+            }).catch(error => {
+                clearMessage();
+                serverMessage.style.display = "block";
+                serverMessage.style.backgroundColor = "#a62f44";
+                failureMessage.textContent = error.message;
+                setTimeout(() => {
+                    serverMessage.style.display = "none";
+                }, 7000);
+            });
+        }
+    }
+
+    searchButton.addEventListener("click", fetchBooks);
+    document.getElementById('search-input').addEventListener("keypress", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            fetchBooks();
         }
     });
 
@@ -93,22 +115,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ bookId: bookId })
-        }).then(response =>{
-                if (!response.ok) {
-                    return response.json().then(responseData => {
-                        throw new Error(responseData.message || "unable to complete the operation");
-                    })
-                }
-                return response.json();
-            }).then(data => {
-                clearMessage();
-                serverMessage.style.display = "block";
-                serverMessage.style.backgroundColor = '#00ff77';
-                successMessage.textContent = data.message;
-                setTimeout(() => {
-                    serverMessage.style.display = "none";
-                }, 7000);
-            })
+        }).then(response => {
+            if (!response.ok) {
+                return response.json().then(responseData => {
+                    throw new Error(responseData.message || "unable to complete the operation");
+                })
+            }
+            return response.json();
+        }).then(data => {
+            clearMessage();
+            serverMessage.style.display = "block";
+            serverMessage.style.backgroundColor = '#00ff77';
+            successMessage.textContent = data.message;
+            setTimeout(() => {
+                serverMessage.style.display = "none";
+            }, 7000);
+        })
             .catch(error => {
                 clearMessage();
                 serverMessage.style.display = "block";
