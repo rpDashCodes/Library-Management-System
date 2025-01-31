@@ -6,6 +6,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    scrollbar-color: #444 #222;
 }
 
 a {
@@ -29,7 +30,7 @@ nav {
     background-color: var(--nav-background-color);
     box-shadow: 2px 1px 7px 0px black;
     transition: all 0.5s ease-in-out;
-    height: 92.6vh;
+    height: 93.25vh;
 }
 #nav-book{
     background-color: black;
@@ -61,7 +62,7 @@ nav>ul>li {
 }
 
 nav li:hover {
-    background-color: rgb(24 60 79)
+    background-color: rgb(24 60 79);
 
 }
 
@@ -79,6 +80,12 @@ nav span {
     width: 100%;
     padding: 15px 0px 0px 15px;
     background-color: #162526;
+    height: 91.6vh;
+}
+#content{
+    height:79.2vh ;
+    overflow-y: scroll;
+    scrollbar-width: thin;
 }
 main {
     width: 100%;
@@ -206,7 +213,8 @@ strong div{
 }
 @media (max-width: 720px) {
     #content {
-        height: 75.2vh;
+        height: 85.2vh;
+        
     }
 }
 @media (max-width: 470px) {

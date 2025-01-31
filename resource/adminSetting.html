@@ -9,10 +9,12 @@
 </head>
 
 <body>
-    
+
     <main>
         <!-- contains main page that will load acording input -->
-        <div id="greet"><div id="hamburger"></div><div id="adName">Welcome, !</div>
+        <div id="greet">
+            <div id="hamburger"></div>
+            <div id="adName">Welcome, !</div>
         </div>
         <div id="setting">
             <nav id="navigation">
@@ -31,7 +33,7 @@
                             <span>Setting</span></a></li>
                 </ul>
             </nav>
-         
+
             <!-- all operation of dashboard -->
             <div id="right-div">
                 <div id="operation">
@@ -47,25 +49,27 @@
                         <div class="image"><img src="/image/logout.svg" alt=""></div>
                         <div>Log Out</div>
                     </div>
-    
+
                 </div>
                 <div id="changeNameForm-container" class="form-container card">
                     <div class="form-title">Change Name</div>
-                    <form id="changeNameForm" action="adSetting/changeName" >
-                        <input type="text"  name="firstName" id="firstName" placeholder="Enter First Name" required>
-                        <input type="text"  name="lastName" id="lastName" placeholder="Enter last Name" required>
-                        <button  type="submit">Change</button>
+                    <form id="changeNameForm" action="adSetting/changeName">
+                        <input type="text" name="firstName" id="firstName" placeholder="Enter First Name" required autocomplete="off">
+                        <input type="text" name="lastName" id="lastName" placeholder="Enter last Name" required autocomplete="off">
+                        <button type="submit">Change</button>
                     </form>
                 </div>
                 <div id="changePasswordForm-container" class="form-container card">
                     <div class="form-title">Change Password</div>
-                    <form id="changePasswordForm" action="adSetting/changePassword" >
-                        <input type="text"  name="oldPassword" id="oldPassword" placeholder="Enter Current Password" required>
-                        <input type="text"  name="newPassword" id="newPassword" placeholder="Enter New Password" required>
+                    <form id="changePasswordForm" action="adSetting/changePassword">
+                        <input type="text" name="oldPassword" id="oldPassword" placeholder="Enter Current Password"
+                            required autocomplete="off" >
+                        <input type="text" name="newPassword" id="newPassword" placeholder="Enter New Password" required
+                            autocomplete="off">
                         <button type="submit">Change</button>
                     </form>
                 </div>
-    
+
                 <!-- content of selected operation will show in this section -->
                 <div id="serverMessage">
                     <div id="successMessage"></div>

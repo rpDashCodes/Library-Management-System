@@ -276,6 +276,12 @@ strong>div {
         padding: 17px 13px;
     }
 }
+@media (max-width: 720px) {
+    #content {
+        height: 79.5vh;
+        
+    }
+}
 
 @media (max-width: 470px) {
     #greet #hamburger {
@@ -285,7 +291,7 @@ strong>div {
     nav {
         position: absolute;
         width: 0px;
-        height: 94.35vh;
+        height: 95.3vh;
     }
 
     #greet {
