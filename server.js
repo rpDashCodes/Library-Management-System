@@ -19,7 +19,6 @@ import memberRoutes from "./routers/memberRoutes.js";
 
 import { fileURLToPath } from "url";
 import { dirname, join } from 'path';
-import { error } from "console";
 
 
 dotenv.config();//reading .env file
