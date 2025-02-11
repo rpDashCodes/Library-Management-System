@@ -4,12 +4,6 @@ import MongoStore from "connect-mongo";//session of user stored in db
 import express from "express";
 import session from "express-session";//helps store sessiondata of user to keep logged in
 import dotenv from 'dotenv';
-
-//importing database models
-
-import Admin from "./Models/Admin.js";
-import { Books, IssuedBooks } from "./Models/Books.js";
-
 //importing Routes
 import adminRoutes  from "./routers/adminRoutes.js";
 import genralRoutes from "./routers/generalRoutes.js";
@@ -54,12 +48,6 @@ app.use(express.json());
 app.use("/", genralRoutes);
 app.use("/admin", adminRoutes);
 app.use('/member', memberRoutes);
-
-
-
-
-// admin end points
-
 
 app.listen(port, () => {
     console.log(`app is listening at port ${port}`);
