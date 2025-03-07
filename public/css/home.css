@@ -133,14 +133,32 @@ section h2 {
 /* Footer */
 
 footer {
+    display: grid;
+    grid-template-areas: 'left right'
+                         'social social';
+    align-items: center;
     background: #333;
-    color: #fff;
-    text-align: center;
+    color: #ffff;
     padding: 10px;
     position: relative;
     bottom: 0;
     width: 100%;
 }
+#socialMediaLinks{
+    grid-area: social;
+    display: flex;
+    margin: 10px auto;
+    gap: 20px;
+}
+#socialMediaLinks img{
+    transition: all 100ms ease-in-out;
+    width: 30px;
+}
+#socialMediaLinks img:hover{
+    scale: 1.2;
+    filter: drop-shadow(2px 2px 2px black);
+}
+
 
 /* Responsive Design */
 
@@ -187,5 +205,11 @@ footer {
     #home .home-text {
         padding: 10px;
         width: 92%;
+    }
+}
+@media (max-width:400px){
+    footer{
+        gap: 15px;
+        font-size: 12px;
     }
 }

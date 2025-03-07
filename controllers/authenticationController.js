@@ -7,26 +7,34 @@ async function login(req, res) {
     if (role === "member") {
         try {
             const student = await User.findOne({ rollNo });
-            if (student && student.password === password) {
-                if (student.isBlocked) {
-                    return res.status(401).json({ message: "Your acount is blocked by admin" });
+            if (student) {
+                console.log('user found');
+                if(student.password === password)
+                {
+                    if (student.isBlocked) {
+                        return res.status(401).json({ message: "Your acount is blocked by admin" });
+                    }
+                    else if (!student.isApproved) {
+                        return res.status(200).json(
+                            { message: "Your acount is not yet approved by admin Please wait till your account is approved" });
+                    }
+                    req.session.user = {
+                        userId: student.rollNo,
+                        role: "member",
+                        userName: student.firstName,
+                    };
+                    
+                    return res.status(200).json({
+                        message: "Login Successful",
+                        redirect: "/member/dashboard",
+                    });
+
+                }else{
+                    return res.status(401).json({ message: "Invalid password" });
                 }
-                else if (!student.isApproved) {
-                    return res.status(401).json(
-                        { message: "Your acount is not yet approved by admin Please wait till your account is approved" });
-                }
-                req.session.user = {
-                    userId: student.rollNo,
-                    role: "member",
-                    userName: student.firstName,
-                };
-                
-                return res.status(200).json({
-                    message: "Login Successful",
-                    redirect: "/member/dashboard",
-                });
             } else {
-                return res.status(401).json({ message: "Invalid Password" });
+                
+                return res.status(401).json({ message: "User Not Found" });
             }
         } catch (error) {
             return res.status(500).json({ message: "Error during login" });

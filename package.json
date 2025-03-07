@@ -1,10 +1,12 @@
 {
   "name": "library_management_system",
   "version": "1.0.0",
+  "Author":"Rudra Prasad Dash",
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"node server.js"
   },
   "keywords": [],
   "author": "",
