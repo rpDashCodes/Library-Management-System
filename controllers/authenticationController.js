@@ -8,7 +8,6 @@ async function login(req, res) {
         try {
             const student = await User.findOne({ rollNo });
             if (student) {
-                console.log('user found');
                 if(student.password === password)
                 {
                     if (student.isBlocked) {

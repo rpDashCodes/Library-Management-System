@@ -108,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else if(e.target.classList.contains('collect')){
             const issueId = e.target.id;
-            console.log('issueId',issueId);
             applyChoice('collectBookForm', issueId);//it will hit the collectBookForm endpoint in book section
         }
     });
